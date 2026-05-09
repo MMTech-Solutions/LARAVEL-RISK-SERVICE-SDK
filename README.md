@@ -12,17 +12,35 @@ HTTP client for the **MMT Risk Management Service** REST API. Same envelope patt
 - PHP **8.2+**
 - `illuminate/http` and `illuminate/support` **^11 | ^12 | ^13**
 
-## Install
+## Install (Composer / Packagist)
+
+Package name: **`mmtech/mmt-risk-sdk`** (see `composer.json`).
+
+After the repository is registered on [Packagist](https://packagist.org) and a **semver tag** exists (e.g. `1.0.0`):
 
 ```bash
-composer require mmtech/mmt-risk-sdk
+composer require mmtech/mmt-risk-sdk:^1.0
 ```
 
-VCS path (example):
+Until a stable tag exists, depend on the default branch:
 
 ```bash
 composer require mmtech/mmt-risk-sdk:dev-main
 ```
+
+Release notes: **`CHANGELOG.md`**.
+
+## First stable release (maintainers)
+
+1. Ensure `CHANGELOG.md` is up to date and `composer validate --strict` passes.
+2. Tag in Git (pick one style, `1.0.0` or `v1.0.0`, and keep it consistent):
+
+   ```bash
+   git tag 1.0.0
+   git push origin 1.0.0
+   ```
+
+3. On Packagist: **Submit** the repository (if new) or **Update**; connect the webhook for future pushes/tags.
 
 ## Standalone (no Laravel)
 
@@ -85,4 +103,4 @@ Uses `Http::fake` only — no network calls.
 
 ## License
 
-Proprietary — see `composer.json`.
+Proprietary — see **`LICENSE`** and `composer.json` (`license`: `proprietary`).

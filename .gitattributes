@@ -1,0 +1,4 @@
+# Slimmer Composer dist archives (git archive / Packagist)
+/tests export-ignore
+/phpunit.xml export-ignore
+/.phpunit.cache export-ignore
