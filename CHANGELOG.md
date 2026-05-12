@@ -5,6 +5,12 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2026-05-12
+
+### Fixed
+
+- `RiskServiceHttpClient`: read `mmt-risk-sdk.base_url` via `Illuminate\Support\Facades\Config` so the base URI resolves correctly under the SDK namespace and static analysis recognizes the call.
+
 ## [1.1.0] - 2026-05-12
 
 Publicación en Packagist con etiqueta **1.1.0**. Incluye la realineación arquitectónica (cambios incompatibles con **1.0.x**).

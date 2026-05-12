@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Config;
 use MmtRiskSdk\TransportDrivers\Contracts\ActionResultInterface;
 use MmtRiskSdk\TransportDrivers\Contracts\TransportInterface;
 use MmtRiskSdk\TransportDrivers\Contracts\TransportPacket;
@@ -19,7 +20,7 @@ class RiskServiceHttpClient implements TransportInterface
     public function __construct()
     {
         $this->http = new Client([
-            'base_uri' => rtrim((string) config('mmt-risk-sdk.base_url'), '/').'/',
+            'base_uri' => rtrim((string) Config::get('mmt-risk-sdk.base_url', ''), '/').'/',
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
