@@ -5,13 +5,27 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-05-12
+
+Publicación en Packagist con etiqueta **1.1.0**. Incluye la realineación arquitectónica (cambios incompatibles con **1.0.x**).
+
+### Breaking
+
+- Replaced `RiskRestClient`, `MmtRiskSdk\Api\*`, and Laravel **`MmtRisk`** facade with **`RiskService`** plus domain services resolved from the container (`accounts()`, `brokers()`, `rules()`, `ingress()`).
+- Configuration is now a single key **`base_url`** backed by **`RISK_SERVICE_URL`** (removed API token, configurable timeout, and extra default headers from package config).
+- Dropped **`illuminate/http`**; HTTP is performed with **Guzzle** directly, aligned with **`mmt/laravel-trading-service-sdk`** transport.
+- Raised minimum PHP to **8.3**.
+- Removed **`tests/`**, **`phpunit`**, and **`docs/specs/`** from the package (parity with Trading SDK packaging).
+
+### Added
+
+- `TransportInterface` / `TransportPacket` / `ActionResultInterface` + `RiskServiceHttpClient` + `ResponseResult` (envelope parsing; `code === "OK"` drives `isSuccess()`).
+- `WireHydration` (`WireMapped`, `WireHydrator`) for `getMappedData()`.
+- Typed **Commands** for POST/PATCH bodies and **ObjectResponses** for OpenAPI-shaped payloads.
+- `RiskService::health(): array` for plain JSON **`GET /health`** (transport `metadata.raw`).
+
 ## [1.0.0] - 2026-05-09
 
 ### Added
 
-- Initial stable release of **mmtech/mmt-risk-sdk**.
-- `RiskRestClient` with envelope handling (`{ code, data, message }`), `health()`, and environment-based factory.
-- Domain APIs: **ingress**, **rules**, **accounts**, **brokers** (`MmtRiskSdk\Api\*`).
-- Laravel package: service provider, publishable config, optional **`MmtRisk`** facade.
-- OpenAPI snapshot **`openapi.json`** at package root.
-- PHPUnit tests using `Http::fake` (no network).
+- Initial **1.x** line (`RiskRestClient`, domain `Api` classes, Laravel facade, Laravel HTTP client).

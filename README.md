@@ -1,105 +1,76 @@
 # mmt-risk-sdk (PHP)
 
-HTTP client for the **MMT Risk Management Service** REST API. Same envelope pattern as **`mmtech/mmt-trading-sdk`**: successful responses use `{ "code": "OK", "data": ... }` and the SDK returns only **`data`**. **`GET /health`** is plain JSON (no envelope).
+HTTP SDK for the **MMT Risk Management Service** REST API. Architecture mirrors **`mmt/laravel-trading-service-sdk`**: Guzzle transport, typed **Commands**, **`ActionResultInterface`** envelope parsing (`{ "code", "message", "data" }`), and optional **`WireHydration`** via `getMappedData(FQCN::class)`.
 
-- **HTTP**: Laravel HTTP client (`Illuminate\Http\Client\Factory`), Guzzle underneath.
-- **Laravel**: package discovery for `MmtRiskSdkServiceProvider`, publishable config, optional facade **`MmtRisk`**.
-- **Core**: `RiskRestClient::envelopeRequest`, `health()`, domain APIs on **`ingress`**, **`rules`**, **`accounts`**, **`brokers`**.
-- **Contract**: OpenAPI snapshot at repo root — **`openapi.json`** (refresh from a running service with `curl -sS "{base}/openapi.json" -o openapi.json` when the API changes).
+- **HTTP**: `guzzlehttp/guzzle` (direct `Client`, same transport style as the Trading SDK).
+- **Laravel**: auto-discovery for `MmtRiskSdk\MmtRiskSdkServiceProvider`, publishable config.
+- **Entry point**: `MmtRiskSdk\RiskService` (`accounts()`, `brokers()`, `rules()`, `ingress()`, `health()`).
+- **Contract**: OpenAPI snapshot at repo root — **`openapi.json`**.
 
 ## Requirements
 
-- PHP **8.2+**
-- `illuminate/http` and `illuminate/support` **^11 | ^12 | ^13**
+- PHP **8.3+**
+- `guzzlehttp/guzzle` **^7.2**
+- `illuminate/support` **^11 | ^12 | ^13**
 
-## Install (Composer / Packagist)
+## Install
 
-Package name: **`mmtech/mmt-risk-sdk`** (see `composer.json`).
-
-After the repository is registered on [Packagist](https://packagist.org) and a **semver tag** exists (e.g. `1.0.0`):
-
-```bash
-composer require mmtech/mmt-risk-sdk:^1.0
-```
-
-Until a stable tag exists, depend on the default branch:
+Package name: **`mmtech/mmt-risk-sdk`**.
 
 ```bash
-composer require mmtech/mmt-risk-sdk:dev-main
+composer require mmtech/mmt-risk-sdk:^1.1
 ```
 
 Release notes: **`CHANGELOG.md`**.
 
-## First stable release (maintainers)
-
-1. Ensure `CHANGELOG.md` is up to date and `composer validate --strict` passes.
-2. Tag in Git (pick one style, `1.0.0` or `v1.0.0`, and keep it consistent):
-
-   ```bash
-   git tag 1.0.0
-   git push origin 1.0.0
-   ```
-
-3. On Packagist: **Submit** the repository (if new) or **Update**; connect the webhook for future pushes/tags.
-
-## Standalone (no Laravel)
-
-```php
-<?php
-
-use Illuminate\Http\Client\Factory;
-use MmtRiskSdk\RiskRestClient;
-
-$http = new Factory();
-$client = RiskRestClient::fromEnvironment($http);
-
-$health = $client->health();
-$rules = $client->rules->listRules();
-```
-
-Environment variables: see below (`MMT_RISK_*`).
-
-## Laravel
-
-1. After `composer require`, the provider is registered via `extra.laravel.providers`.
-2. Publish config (optional):
-
-   ```bash
-   php artisan vendor:publish --tag=mmt-risk-sdk-config
-   ```
-
-3. Configure `.env` using `.env.example` from this package.
-
-4. Inject `MmtRiskSdk\RiskRestClient` or use the facade:
-
-   ```php
-   use MmtRiskSdk\Laravel\Facades\MmtRisk;
-
-   $rows = MmtRisk::accounts()->listAccounts();
-   ```
-
-## Environment variables
+## Environment
 
 | Variable | Description |
 |----------|-------------|
-| `MMT_RISK_API_BASE_URL` | Base URL (no trailing slash); default `http://127.0.0.1:6051` |
-| `MMT_RISK_API_TOKEN` | Optional Bearer token |
-| `MMT_RISK_HTTP_TIMEOUT` | Seconds (float) |
+| `RISK_SERVICE_URL` | Base URL of the Risk API (no trailing slash required; normalized internally). |
 
-Additional headers can be set in **`config/mmt-risk-sdk.php`** under **`headers`** (merged after defaults and `Authorization`).
+Publish config (optional):
+
+```bash
+php artisan vendor:publish --tag=mmt-risk-sdk-config
+```
+
+## Quick usage (Laravel)
+
+```php
+use MmtRiskSdk\Domains\Accounts\Commands\CreateAccountCommand;
+use MmtRiskSdk\Domains\Accounts\ObjectResponses\AccountResponseItem;
+use MmtRiskSdk\RiskService;
+
+$risk = app(RiskService::class);
+
+$result = $risk->accounts()->listAccounts();
+
+if ($result->isSuccess()) {
+    /** @var AccountResponseItem[] $rows */
+    $rows = $result->getMappedData(AccountResponseItem::class);
+}
+
+$health = $risk->health(); // plain array JSON from GET /health
+
+$created = $risk->accounts()->createAccount(
+    new CreateAccountCommand(login: '1001', broker_id: $brokerUuid),
+);
+
+if ($created->isSuccess()) {
+    $account = $created->getMappedData(AccountResponseItem::class);
+}
+```
+
+Use **`getData(FQCN::class)`** for flat list/object constructor spread (same as Trading SDK), and **`getMappedData(FQCN::class)`** when nested DTOs or `#[WireMapped]` shapes are needed.
 
 ## OpenAPI
 
-The authoritative route list is **`openapi.json`** in the package root. Regenerate when the Risk service contract changes, then align **`AccountsApi`**, **`RulesApi`**, etc., if paths differ.
-
-## Tests
+Regenerate the snapshot when the service contract changes:
 
 ```bash
-composer install
-composer test
+curl -sS "http://<host>:<port>/openapi.json" -o openapi.json
 ```
-
-Uses `Http::fake` only — no network calls.
 
 ## License
 
