@@ -70,6 +70,12 @@ interface AccountsServiceInterface
 
     public function patchAccountRuleMembership(string $accountId, string $ruleId, CommandInterface $command): ActionResultInterface;
 
+    public function attachAccountRule(string $accountId, CommandInterface $command): ActionResultInterface;
+
+    public function detachAccountRule(string $accountId, string $ruleId): ActionResultInterface;
+
+    public function detachAllAccountRules(string $accountId): ActionResultInterface;
+
     public function syncMt5OpenPositions(string $accountId): ActionResultInterface;
 
     public function listAccountOpenTrades(string $accountId): ActionResultInterface;

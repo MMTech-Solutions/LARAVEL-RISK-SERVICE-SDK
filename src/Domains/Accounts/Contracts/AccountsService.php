@@ -6,6 +6,7 @@ namespace MmtRiskSdk\Domains\Accounts\Contracts;
 
 use InvalidArgumentException;
 use MmtRiskSdk\Contracts\CommandInterface;
+use MmtRiskSdk\Domains\Accounts\Commands\AttachAccountRuleCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\CreateAccountCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\EvaluationHistoryRangeCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\EvaluationHistoryRecentCommand;
@@ -210,6 +211,31 @@ final class AccountsService implements AccountsServiceInterface
         $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/rules/'.$this->encodePathSegment($ruleId).'/membership';
 
         return $this->sendPacket('patch', $url, $command->toArray());
+    }
+
+    public function attachAccountRule(string $accountId, CommandInterface $command): ActionResultInterface
+    {
+        if (! $command instanceof AttachAccountRuleCommand) {
+            throw new InvalidArgumentException('Expected '.AttachAccountRuleCommand::class);
+        }
+
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/rules';
+
+        return $this->sendPacket('post', $url, $command->toArray());
+    }
+
+    public function detachAccountRule(string $accountId, string $ruleId): ActionResultInterface
+    {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/rules/'.$this->encodePathSegment($ruleId);
+
+        return $this->sendPacket('delete', $url);
+    }
+
+    public function detachAllAccountRules(string $accountId): ActionResultInterface
+    {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/rules';
+
+        return $this->sendPacket('delete', $url);
     }
 
     public function syncMt5OpenPositions(string $accountId): ActionResultInterface
