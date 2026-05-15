@@ -1,6 +1,5 @@
 {
     "name": "mmtech/mmt-risk-sdk",
-    "version": "1.2.0",
     "description": "PHP SDK for MMT Risk Management Service API (Guzzle transport, typed commands and responses). Laravel 11–13 compatible.",
     "type": "library",
     "license": "proprietary",
@@ -16,6 +15,11 @@
             "name": "MMT Risk Management Service"
         }
     ],
+    "homepage": "https://github.com/MMTech-Solutions/LARAVEL-RISK-SERVICE-SDK",
+    "support": {
+        "issues": "https://github.com/MMTech-Solutions/LARAVEL-RISK-SERVICE-SDK/issues",
+        "source": "https://github.com/MMTech-Solutions/LARAVEL-RISK-SERVICE-SDK"
+    },
     "require": {
         "php": "^8.3",
         "guzzlehttp/guzzle": "^7.2",

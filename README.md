@@ -18,7 +18,7 @@ HTTP SDK for the **MMT Risk Management Service** REST API. Architecture mirrors 
 Package name: **`mmtech/mmt-risk-sdk`**.
 
 ```bash
-composer require mmtech/mmt-risk-sdk:^1.1
+composer require mmtech/mmt-risk-sdk:^1.2
 ```
 
 Release notes: **`CHANGELOG.md`**.

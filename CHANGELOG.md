@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - `AttachAccountRuleCommand`: documented as OpenAPI `AccountRuleAssignRequest`.
+- **`composer.json`**: removed inline `version` (Packagist uses Git tags); added `homepage` and `support`.
 
 ## [1.1.2] - 2026-05-15
 
