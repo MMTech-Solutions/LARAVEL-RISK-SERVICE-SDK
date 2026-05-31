@@ -5,6 +5,28 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-05-31
+
+### Breaking
+
+- **Account-level metrics endpoints removed** — `listAccountMetricChanges`, `getAccountMetricsContext`, `getAccountMetricsEnrichment`, `getAccountMetricHistory`, and `getAccountMetricTradeTimeline` were removed from `AccountsServiceInterface`. Use **`RiskService::metricPhases()`** (`MetricPhasesServiceInterface`) for phase-scoped metrics instead.
+- **`BrokerIntegrationKafkaResolvedItem`**: `topic_risk_notifications` replaced by **`topic_risk_events`** (aligns with OpenAPI).
+
+### Added
+
+- **`MetricPhases` domain** — `listMetricPhases`, `createMetricPhase`, `deleteMetricPhase`, `disableMetricPhase`, `listPhaseMetricChanges`, `getPhaseMetricsEnrichment`, `getPhaseMetricHistory`, `getPhaseMetricTradeTimeline` via `RiskService::metricPhases()`.
+- **B2Trader broker SDK config** — `Domains/Brokers/Platforms/B2Trader/BrokerB2TraderSdkConfigItem` and assembler helpers for flat API payloads.
+- **MT5 broker SDK config** — `Domains/Brokers/Platforms/MT5/BrokerMt5SdkConfigItem` (separated from B2Trader fields).
+- **Shared broker builders** — `BrokerSdkConfigAssembler`, `BrokerIntegrationPayloadBuilder`, `BrokerSdkCommonConfigItem`.
+- **`AccountResponseItem::opening_credit`** field.
+- **`BrokerSdkConfigInputItem` / `BrokerIntegrationSdkResolvedItem`**: B2Trader fields (`keycloak_url`, `bbp_*`, `frontoffice_*`, `history_base_url`, `default_transfer_asset_id`, `kafka_*`).
+- **`BrokerKafkaConfigInputItem::topic_risk_events`** (deprecated alias `topic_risk_notifications` retained for writes).
+- **`Domains/Accounts/Platforms/MT5/Mt5PlatformUserSnapshotItem`** — MT5-specific snapshot; old `ObjectResponses` path kept as alias.
+
+### Changed
+
+- Regenerated **`openapi.json`** from live Risk service (metric-phases, B2Trader broker SDK fields).
+
 ## [1.2.0] - 2026-05-15
 
 ### Breaking

@@ -11,6 +11,8 @@ use MmtRiskSdk\Domains\Brokers\Contracts\BrokersService;
 use MmtRiskSdk\Domains\Brokers\Contracts\BrokersServiceInterface;
 use MmtRiskSdk\Domains\Ingress\Contracts\IngressService;
 use MmtRiskSdk\Domains\Ingress\Contracts\IngressServiceInterface;
+use MmtRiskSdk\Domains\MetricPhases\Contracts\MetricPhasesService;
+use MmtRiskSdk\Domains\MetricPhases\Contracts\MetricPhasesServiceInterface;
 use MmtRiskSdk\Domains\Rules\Contracts\RulesService;
 use MmtRiskSdk\Domains\Rules\Contracts\RulesServiceInterface;
 use MmtRiskSdk\TransportDrivers\Contracts\TransportInterface;
@@ -27,6 +29,7 @@ final class MmtRiskSdkServiceProvider extends ServiceProvider
         $this->app->bind(BrokersServiceInterface::class, BrokersService::class);
         $this->app->bind(RulesServiceInterface::class, RulesService::class);
         $this->app->bind(IngressServiceInterface::class, IngressService::class);
+        $this->app->bind(MetricPhasesServiceInterface::class, MetricPhasesService::class);
         $this->app->singleton(RiskService::class);
     }
 

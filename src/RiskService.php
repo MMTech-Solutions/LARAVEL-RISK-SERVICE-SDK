@@ -7,6 +7,7 @@ namespace MmtRiskSdk;
 use MmtRiskSdk\Domains\Accounts\Contracts\AccountsServiceInterface;
 use MmtRiskSdk\Domains\Brokers\Contracts\BrokersServiceInterface;
 use MmtRiskSdk\Domains\Ingress\Contracts\IngressServiceInterface;
+use MmtRiskSdk\Domains\MetricPhases\Contracts\MetricPhasesServiceInterface;
 use MmtRiskSdk\Domains\Rules\Contracts\RulesServiceInterface;
 use MmtRiskSdk\TransportDrivers\Contracts\TransportInterface;
 use MmtRiskSdk\TransportDrivers\Contracts\TransportPacket;
@@ -35,6 +36,11 @@ class RiskService
     public function ingress(): IngressServiceInterface
     {
         return resolve(IngressServiceInterface::class);
+    }
+
+    public function metricPhases(): MetricPhasesServiceInterface
+    {
+        return resolve(MetricPhasesServiceInterface::class);
     }
 
     /**

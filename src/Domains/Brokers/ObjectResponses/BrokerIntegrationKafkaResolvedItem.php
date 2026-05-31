@@ -11,5 +11,5 @@ final class BrokerIntegrationKafkaResolvedItem
 {
     public string $bootstrap_servers;
 
-    public string $topic_risk_notifications;
+    public string $topic_risk_events;
 }

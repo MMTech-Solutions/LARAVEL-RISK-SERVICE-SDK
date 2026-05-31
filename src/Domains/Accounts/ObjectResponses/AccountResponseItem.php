@@ -21,6 +21,8 @@ final class AccountResponseItem
 
     public ?float $opening_balance = null;
 
+    public ?float $opening_credit = null;
+
     public ?float $daily_loss_limit_pct = null;
 
     public ?float $breakeven_band_pct = null;

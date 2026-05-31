@@ -36,34 +36,6 @@ interface AccountsServiceInterface
 
     public function deleteAccount(string $accountId): ActionResultInterface;
 
-    public function listAccountMetricChanges(string $accountId, ?int $limit = null): ActionResultInterface;
-
-    public function getAccountMetricsContext(string $accountId): ActionResultInterface;
-
-    public function getAccountMetricsEnrichment(string $accountId, ?int $days = null): ActionResultInterface;
-
-    public function getAccountMetricHistory(
-        string $accountId,
-        string $metricKey,
-        string $fromUtc,
-        string $toUtc,
-        ?string $granularity,
-        ?bool $onlyNonzeroDelta,
-        ?float $minAbsDelta,
-        ?string $sort,
-        ?int $offset,
-        ?int $limit,
-    ): ActionResultInterface;
-
-    public function getAccountMetricTradeTimeline(
-        string $accountId,
-        string $metricKey,
-        string $fromUtc,
-        string $toUtc,
-        ?int $offset,
-        ?int $limit,
-    ): ActionResultInterface;
-
     public function listAccountRuleMemberships(string $accountId): ActionResultInterface;
 
     public function resetAccountRuleMatchStreak(string $accountId, string $ruleId): ActionResultInterface;
@@ -76,6 +48,7 @@ interface AccountsServiceInterface
 
     public function detachAllAccountRules(string $accountId): ActionResultInterface;
 
+    /** MT5-only: backfill open positions as trade rows. */
     public function syncMt5OpenPositions(string $accountId): ActionResultInterface;
 
     public function listAccountOpenTrades(string $accountId): ActionResultInterface;

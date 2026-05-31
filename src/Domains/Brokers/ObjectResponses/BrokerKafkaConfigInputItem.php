@@ -11,5 +11,8 @@ final class BrokerKafkaConfigInputItem
 {
     public ?string $bootstrap_servers = null;
 
+    public ?string $topic_risk_events = null;
+
+    /** @deprecated Use topic_risk_events (same Kafka topic for all Risk egress). */
     public ?string $topic_risk_notifications = null;
 }

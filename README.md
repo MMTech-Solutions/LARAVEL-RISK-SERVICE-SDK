@@ -4,7 +4,7 @@ HTTP SDK for the **MMT Risk Management Service** REST API. Architecture mirrors 
 
 - **HTTP**: `guzzlehttp/guzzle` (direct `Client`, same transport style as the Trading SDK).
 - **Laravel**: auto-discovery for `MmtRiskSdk\MmtRiskSdkServiceProvider`, publishable config.
-- **Entry point**: `MmtRiskSdk\RiskService` (`accounts()`, `brokers()`, `rules()`, `ingress()`, `health()`).
+- **Entry point**: `MmtRiskSdk\RiskService` (`accounts()`, `brokers()`, `rules()`, `ingress()`, `metricPhases()`, `health()`).
 - **Contract**: OpenAPI snapshot at repo root — **`openapi.json`**.
 
 ## Requirements
@@ -18,7 +18,7 @@ HTTP SDK for the **MMT Risk Management Service** REST API. Architecture mirrors 
 Package name: **`mmtech/mmt-risk-sdk`**.
 
 ```bash
-composer require mmtech/mmt-risk-sdk:^1.2
+composer require mmtech/mmt-risk-sdk:^2.0
 ```
 
 Release notes: **`CHANGELOG.md`**.
