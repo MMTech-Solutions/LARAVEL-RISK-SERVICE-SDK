@@ -37,7 +37,7 @@ final class MmtRiskSdkServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/mmt-risk-sdk.php' => config_path('mmt-risk-sdk.php'),
+                __DIR__.'/../config/mmt-risk-sdk.php' => $this->app->configPath('mmt-risk-sdk.php'),
             ], 'mmt-risk-sdk-config');
         }
     }
