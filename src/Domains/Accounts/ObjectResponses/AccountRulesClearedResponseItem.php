@@ -9,7 +9,7 @@ use MmtRiskSdk\WireHydration\Attributes\WireMapped;
 /**
  * Success envelope payload (`data`) for DELETE /accounts/{account_id}/rules.
  *
- * OpenAPI schema: AccountRulesClearedResponse.
+ * OpenAPI schema: PhaseRulesClearedResponse.
  */
 #[WireMapped]
 final class AccountRulesClearedResponseItem

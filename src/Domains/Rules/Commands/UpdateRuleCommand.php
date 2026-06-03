@@ -9,11 +9,11 @@ use MmtRiskSdk\Contracts\CommandInterface;
 final class UpdateRuleCommand implements CommandInterface
 {
     /**
-     * @param  list<string>|null  $accountIds
+     * @param  list<string>|null  $phaseIds
      * @param  list<array<string, mixed>>|null  $conditions
      */
     public function __construct(
-        public ?array $accountIds = null,
+        public ?array $phaseIds = null,
         public ?string $name = null,
         public ?string $description = null,
         public ?bool $enabled = null,
@@ -26,7 +26,7 @@ final class UpdateRuleCommand implements CommandInterface
     public function toArray(): array
     {
         return array_filter([
-            'account_ids' => $this->accountIds,
+            'phase_ids' => $this->phaseIds,
             'name' => $this->name,
             'description' => $this->description,
             'enabled' => $this->enabled,

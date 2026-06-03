@@ -14,7 +14,7 @@ final class RuleResponseItem
     /**
      * @var list<string>
      */
-    public array $account_ids = [];
+    public array $phase_ids = [];
 
     public ?string $name = null;
 

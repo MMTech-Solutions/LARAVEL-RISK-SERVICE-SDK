@@ -44,4 +44,10 @@ interface MetricPhasesServiceInterface
         ?int $offset,
         ?int $limit,
     ): ActionResultInterface;
+
+    public function listPhaseRuleMemberships(string $accountId, string $phaseId): ActionResultInterface;
+
+    public function assignRuleToPhase(string $accountId, string $phaseId, CommandInterface $command): ActionResultInterface;
+
+    public function unassignRuleFromPhase(string $accountId, string $phaseId, string $ruleId): ActionResultInterface;
 }

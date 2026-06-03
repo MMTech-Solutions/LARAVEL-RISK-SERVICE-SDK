@@ -9,12 +9,12 @@ use MmtRiskSdk\Contracts\CommandInterface;
 final class CreateRuleCommand implements CommandInterface
 {
     /**
-     * @param  list<string>  $accountIds
+     * @param  list<string>  $phaseIds
      * @param  list<array<string, mixed>>  $conditions
      */
     public function __construct(
         public array $conditions,
-        public array $accountIds = [],
+        public array $phaseIds = [],
         public ?string $name = null,
         public ?string $description = null,
         public bool $enabled = true,
@@ -26,7 +26,7 @@ final class CreateRuleCommand implements CommandInterface
     public function toArray(): array
     {
         return array_filter([
-            'account_ids' => $this->accountIds,
+            'phase_ids' => $this->phaseIds,
             'name' => $this->name,
             'description' => $this->description,
             'enabled' => $this->enabled,

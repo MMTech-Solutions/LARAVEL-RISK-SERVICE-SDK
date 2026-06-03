@@ -5,6 +5,23 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-06-03
+
+### Breaking
+
+- **`RuleResponseItem`**: `account_ids` renamed to **`phase_ids`** (OpenAPI `RuleResponse`).
+- **`CreateRuleCommand` / `UpdateRuleCommand`**: `accountIds` constructor parameter renamed to **`phaseIds`**; wire payload key **`phase_ids`** (replaces `account_ids`).
+
+### Added
+
+- **`MetricPhasesService`**: `listPhaseRuleMemberships`, `assignRuleToPhase`, `unassignRuleFromPhase` for `/accounts/{account_id}/metric-phases/{phase_id}/rules`.
+- **`AssignPhaseRuleCommand`**, **`PhaseRuleMembershipItem`**.
+
+### Changed
+
+- **`WireHydrator`**: applies PHP property defaults when a wire key is missing on `#[WireMapped]` classes (e.g. empty `phase_ids` arrays).
+- Regenerated **`openapi.json`** from Risk service at `http://68.178.205.211:6051`.
+
 ## [2.0.0] - 2026-05-31
 
 ### Breaking

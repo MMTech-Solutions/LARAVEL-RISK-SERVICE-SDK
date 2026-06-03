@@ -133,6 +133,25 @@ class WireHydrator
             return;
         }
 
+        if ($property->hasDefaultValue()) {
+            try {
+                $property->setValue($object, $property->getDefaultValue());
+
+                return;
+            } catch (Throwable $e) {
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'Missing wire key for property %s::$%s and could not apply default: %s',
+                        $property->getDeclaringClass()->getName(),
+                        $property->getName(),
+                        $e->getMessage()
+                    ),
+                    0,
+                    $e
+                );
+            }
+        }
+
         throw new InvalidArgumentException(
             sprintf(
                 'Missing wire key for required property %s::$%s.',

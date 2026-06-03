@@ -6,6 +6,7 @@ namespace MmtRiskSdk\Domains\MetricPhases\Contracts;
 
 use InvalidArgumentException;
 use MmtRiskSdk\Contracts\CommandInterface;
+use MmtRiskSdk\Domains\MetricPhases\Commands\AssignPhaseRuleCommand;
 use MmtRiskSdk\Domains\MetricPhases\Commands\CreateMetricPhaseCommand;
 use MmtRiskSdk\TransportDrivers\Contracts\ActionResultInterface;
 use MmtRiskSdk\TransportDrivers\Contracts\TransportInterface;
@@ -115,6 +116,33 @@ final class MetricPhasesService implements MetricPhasesServiceInterface
         ]);
 
         return $this->sendPacket('get', $url, $query);
+    }
+
+    public function listPhaseRuleMemberships(string $accountId, string $phaseId): ActionResultInterface
+    {
+        $url = $this->phaseBasePath($accountId).'/'.$this->encodePathSegment($phaseId).'/rule-memberships';
+
+        return $this->sendPacket('get', $url);
+    }
+
+    public function assignRuleToPhase(string $accountId, string $phaseId, CommandInterface $command): ActionResultInterface
+    {
+        if (! $command instanceof AssignPhaseRuleCommand) {
+            throw new InvalidArgumentException('Expected '.AssignPhaseRuleCommand::class);
+        }
+
+        $url = $this->phaseBasePath($accountId).'/'.$this->encodePathSegment($phaseId).'/rules';
+
+        return $this->sendPacket('post', $url, $command->toArray());
+    }
+
+    public function unassignRuleFromPhase(string $accountId, string $phaseId, string $ruleId): ActionResultInterface
+    {
+        $url = $this->phaseBasePath($accountId)
+            .'/'.$this->encodePathSegment($phaseId)
+            .'/rules/'.$this->encodePathSegment($ruleId);
+
+        return $this->sendPacket('delete', $url);
     }
 
     private function phaseBasePath(string $accountId): string
