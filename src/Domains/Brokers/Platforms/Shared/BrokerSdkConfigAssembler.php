@@ -40,15 +40,8 @@ final class BrokerSdkConfigAssembler
         $config->bbp_client_id = $b2Trader->bbp_client_id;
         $config->bbp_client_secret = $b2Trader->bbp_client_secret;
         $config->history_base_url = $b2Trader->history_base_url;
-        $config->frontoffice_base_url = $b2Trader->frontoffice_base_url;
-        $config->frontoffice_api_key = $b2Trader->frontoffice_api_key;
         $config->default_transfer_asset_id = $b2Trader->default_transfer_asset_id;
-        $config->kafka_bootstrap_servers = $b2Trader->kafka_bootstrap_servers;
-        $config->kafka_username = $b2Trader->kafka_username;
-        $config->kafka_password = $b2Trader->kafka_password;
-        $config->kafka_topic_external_events = $b2Trader->kafka_topic_external_events;
-        $config->kafka_group_id = $b2Trader->kafka_group_id;
-        $config->kafka_group_id_prefix = $b2Trader->kafka_group_id_prefix;
+        $config->dss_ws_base_url = $b2Trader->dss_ws_base_url;
 
         return $config;
     }
@@ -69,15 +62,8 @@ final class BrokerSdkConfigAssembler
             'bbp_client_id' => $config->bbp_client_id,
             'bbp_client_secret' => $config->bbp_client_secret,
             'history_base_url' => $config->history_base_url,
-            'frontoffice_base_url' => $config->frontoffice_base_url,
-            'frontoffice_api_key' => $config->frontoffice_api_key,
             'default_transfer_asset_id' => $config->default_transfer_asset_id,
-            'kafka_bootstrap_servers' => $config->kafka_bootstrap_servers,
-            'kafka_username' => $config->kafka_username,
-            'kafka_password' => $config->kafka_password,
-            'kafka_topic_external_events' => $config->kafka_topic_external_events,
-            'kafka_group_id' => $config->kafka_group_id,
-            'kafka_group_id_prefix' => $config->kafka_group_id_prefix,
+            'dss_ws_base_url' => $config->dss_ws_base_url,
         ], static fn (mixed $v): bool => $v !== null);
     }
 }

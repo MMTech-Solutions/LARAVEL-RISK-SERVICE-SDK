@@ -14,14 +14,7 @@ final class BrokerB2TraderSdkConfigItem
         public ?string $bbp_client_id = null,
         public ?string $bbp_client_secret = null,
         public ?string $history_base_url = null,
-        public ?string $frontoffice_base_url = null,
-        public ?string $frontoffice_api_key = null,
         public ?string $default_transfer_asset_id = null,
-        public ?string $kafka_bootstrap_servers = null,
-        public ?string $kafka_username = null,
-        public ?string $kafka_password = null,
-        public ?string $kafka_topic_external_events = null,
-        public ?string $kafka_group_id = null,
-        public ?string $kafka_group_id_prefix = null,
+        public ?string $dss_ws_base_url = null,
     ) {}
 }
