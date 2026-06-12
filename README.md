@@ -60,6 +60,41 @@ $created = $risk->accounts()->createAccount(
 if ($created->isSuccess()) {
     $account = $created->getMappedData(AccountResponseItem::class);
 }
+
+use MmtRiskSdk\Domains\Accounts\Commands\ProvisionAccountCommand;
+use MmtRiskSdk\Domains\Accounts\Commands\ProvisionMetricPhaseCommand;
+use MmtRiskSdk\Domains\Accounts\Commands\ProvisionRuleCommand;
+use MmtRiskSdk\Domains\Accounts\ObjectResponses\AccountProvisionResponseItem;
+
+$provisioned = $risk->accounts()->provisionAccount(
+    new ProvisionAccountCommand(
+        login: '50123456',
+        broker_id: $brokerUuid,
+        metric_phases: [
+            new ProvisionMetricPhaseCommand(
+                name: 'Challenge',
+                rules: [
+                    new ProvisionRuleCommand(
+                        conditions: [
+                            [
+                                'type' => 'comparison',
+                                'metric' => 'return_equity_pct_day',
+                                'operator' => '<=',
+                                'value' => -5.0,
+                            ],
+                        ],
+                        name: 'Max daily drawdown <= -5%',
+                        description: 'Daily equity drawdown limit',
+                    ),
+                ],
+            ),
+        ],
+    ),
+);
+
+if ($provisioned->isSuccess()) {
+    $payload = $provisioned->getMappedData(AccountProvisionResponseItem::class);
+}
 ```
 
 Use **`getData(FQCN::class)`** for flat list/object constructor spread (same as Trading SDK), and **`getMappedData(FQCN::class)`** when nested DTOs or `#[WireMapped]` shapes are needed.

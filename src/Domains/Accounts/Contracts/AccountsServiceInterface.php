@@ -13,6 +13,8 @@ interface AccountsServiceInterface
 
     public function createAccount(CommandInterface $command): ActionResultInterface;
 
+    public function provisionAccount(CommandInterface $command): ActionResultInterface;
+
     public function getAccountByLogin(string $login): ActionResultInterface;
 
     public function evaluationHistoryRange(CommandInterface $command): ActionResultInterface;

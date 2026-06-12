@@ -11,6 +11,7 @@ use MmtRiskSdk\Domains\Accounts\Commands\CreateAccountCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\EvaluationHistoryRangeCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\EvaluationHistoryRecentCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\PatchAccountRuleMembershipCommand;
+use MmtRiskSdk\Domains\Accounts\Commands\ProvisionAccountCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\UpdateAccountCommand;
 use MmtRiskSdk\TransportDrivers\Contracts\ActionResultInterface;
 use MmtRiskSdk\TransportDrivers\Contracts\TransportInterface;
@@ -38,6 +39,15 @@ final class AccountsService implements AccountsServiceInterface
         }
 
         return $this->sendPacket('post', $this->baseUrl, $command->toArray());
+    }
+
+    public function provisionAccount(CommandInterface $command): ActionResultInterface
+    {
+        if (! $command instanceof ProvisionAccountCommand) {
+            throw new InvalidArgumentException('Expected '.ProvisionAccountCommand::class);
+        }
+
+        return $this->sendPacket('post', $this->baseUrl.'/provision', $command->toArray());
     }
 
     public function getAccountByLogin(string $login): ActionResultInterface
