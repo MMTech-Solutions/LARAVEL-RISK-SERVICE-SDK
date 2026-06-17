@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.3.0] - 2026-06-17
+
+### Added
+
+- **MetricPhases**: `resetMetricPhase` — `POST /accounts/{account_id}/metric-phases/{phase_id}/reset` (in-place phase reset; map success `data` with `MetricPhaseResponseItem`).
+- Regenerated **`openapi.json`** from Risk service at `http://68.178.205.211:6051`.
+
 ## [3.2.0] - 2026-06-12
 
 ### Added

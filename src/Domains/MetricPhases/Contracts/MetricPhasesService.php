@@ -52,6 +52,13 @@ final class MetricPhasesService implements MetricPhasesServiceInterface
         return $this->sendPacket('patch', $url);
     }
 
+    public function resetMetricPhase(string $accountId, string $phaseId): ActionResultInterface
+    {
+        $url = $this->phaseBasePath($accountId).'/'.$this->encodePathSegment($phaseId).'/reset';
+
+        return $this->sendPacket('post', $url);
+    }
+
     public function listPhaseMetricChanges(string $accountId, string $phaseId, ?int $limit = null): ActionResultInterface
     {
         $url = $this->phaseBasePath($accountId).'/'.$this->encodePathSegment($phaseId).'/metric-changes';

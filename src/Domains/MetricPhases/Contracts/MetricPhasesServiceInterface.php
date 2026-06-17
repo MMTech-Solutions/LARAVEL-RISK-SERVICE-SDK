@@ -17,6 +17,8 @@ interface MetricPhasesServiceInterface
 
     public function disableMetricPhase(string $accountId, string $phaseId): ActionResultInterface;
 
+    public function resetMetricPhase(string $accountId, string $phaseId): ActionResultInterface;
+
     public function listPhaseMetricChanges(string $accountId, string $phaseId, ?int $limit = null): ActionResultInterface;
 
     public function getPhaseMetricsEnrichment(string $accountId, string $phaseId, ?int $days = null): ActionResultInterface;
