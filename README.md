@@ -70,6 +70,7 @@ $provisioned = $risk->accounts()->provisionAccount(
     new ProvisionAccountCommand(
         login: '50123456',
         broker_id: $brokerUuid,
+        start_balance: 100000.0,
         metric_phases: [
             new ProvisionMetricPhaseCommand(
                 name: 'Challenge',

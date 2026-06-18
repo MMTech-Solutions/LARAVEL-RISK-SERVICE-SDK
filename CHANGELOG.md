@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.0] - 2026-06-18
+
+### Added
+
+- **Accounts**: `ProvisionAccountCommand` now requires **`start_balance`** (flat opening equity/balance for the new account and first metric phase; OpenAPI `AccountProvisionCreate`).
+- Regenerated **`openapi.json`** from Risk service at `http://68.178.205.211:6051`.
+
 ## [3.3.0] - 2026-06-17
 
 ### Added
