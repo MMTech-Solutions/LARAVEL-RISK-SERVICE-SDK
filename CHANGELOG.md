@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.5.0] - 2026-06-22
+
+### Breaking
+
+- **`BrokerB2TraderSdkConfigItem`**: removed **`dss_ws_base_url`**; added **`platform_server`**, **`platform_port`**, **`platform_login`**, and all **`kafka_*`** constructor parameters (aligns with Risk broker `integration.sdk` B2Trader payload).
+- **`BrokerSdkConfigInputItem` / `BrokerIntegrationSdkResolvedItem` / `BrokerSdkConfigAssembler`**: same field swap for B2Trader flat SDK config payloads.
+
 ## [3.4.0] - 2026-06-18
 
 ### Added

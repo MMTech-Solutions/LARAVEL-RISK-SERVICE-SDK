@@ -24,6 +24,12 @@ final class BrokerSdkConfigInputItem
 
     public ?string $mt5_login = null;
 
+    public ?string $platform_server = null;
+
+    public ?int $platform_port = null;
+
+    public ?string $platform_login = null;
+
     public ?string $keycloak_url = null;
 
     public ?string $bbp_client_id = null;
@@ -34,5 +40,19 @@ final class BrokerSdkConfigInputItem
 
     public ?string $default_transfer_asset_id = null;
 
-    public ?string $dss_ws_base_url = null;
+    public ?string $kafka_bootstrap_servers = null;
+
+    public ?string $kafka_security_protocol = null;
+
+    public ?string $kafka_sasl_mechanism = null;
+
+    public ?string $kafka_username = null;
+
+    public ?string $kafka_password = null;
+
+    public ?string $kafka_external_events_topic = null;
+
+    public ?string $kafka_consumer_group_id_prefix = null;
+
+    public ?string $kafka_auto_offset_reset = null;
 }
