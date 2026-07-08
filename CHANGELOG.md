@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.7.0] - 2026-07-07
+
+### Fixed
+
+- **MT5 broker SDK config** — `BrokerSdkConfigAssembler::forMt5()` again accepts {@see BrokerMt5SdkConfigItem} with **`platform_server`**, **`platform_port`**, **`platform_login`** (Risk {@see BrokerSdkConfigInput}); legacy **`mt5_*`** keys are removed from payloads and DTOs (API rejects them as `extra_forbidden`).
+- **`BrokerMt5SdkConfigItem`** — restored as the MT5/MT4 platform connection DTO using `platform_*` field names.
+
+### Changed
+
+- Regenerated **`openapi.json`** from Risk service at `http://198.244.253.112:6051`.
+
 ## [3.6.0] - 2026-07-07
 
 ### Breaking

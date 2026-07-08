@@ -18,12 +18,6 @@ final class BrokerSdkConfigInputItem
 
     public ?string $connection_name = null;
 
-    public ?string $mt5_server = null;
-
-    public ?int $mt5_port = null;
-
-    public ?string $mt5_login = null;
-
     public ?string $platform_server = null;
 
     public ?int $platform_port = null;

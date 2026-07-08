@@ -6,6 +6,7 @@ namespace MmtRiskSdk\Domains\Brokers\Platforms\Shared;
 
 use MmtRiskSdk\Domains\Brokers\ObjectResponses\BrokerSdkConfigInputItem;
 use MmtRiskSdk\Domains\Brokers\Platforms\B2Trader\BrokerB2TraderSdkConfigItem;
+use MmtRiskSdk\Domains\Brokers\Platforms\MT5\BrokerMt5SdkConfigItem;
 
 /**
  * Builds flat broker SDK config payloads from shared + platform-specific parts.
@@ -13,16 +14,22 @@ use MmtRiskSdk\Domains\Brokers\Platforms\B2Trader\BrokerB2TraderSdkConfigItem;
 final class BrokerSdkConfigAssembler
 {
     /**
-     * MT5/MT4 SDK config for broker integration via trading-service session only.
+     * MT5/MT4 SDK config: shared trading-service session + platform connection hints.
      *
-     * Risk API accepts {@see BrokerSdkCommonConfigItem} fields only; legacy {@code mt5_*} keys are rejected.
+     * Risk {@see BrokerSdkConfigInput} uses {@code platform_server}, {@code platform_port}, {@code platform_login}
+     * (not legacy {@code mt5_*} keys).
      */
-    public static function forMt5(BrokerSdkCommonConfigItem $common): BrokerSdkConfigInputItem
-    {
+    public static function forMt5(
+        BrokerSdkCommonConfigItem $common,
+        BrokerMt5SdkConfigItem $platform,
+    ): BrokerSdkConfigInputItem {
         $config = new BrokerSdkConfigInputItem;
         $config->trading_service_base_url = $common->trading_service_base_url;
         $config->connection_id = $common->connection_id;
         $config->connection_name = $common->connection_name;
+        $config->platform_server = $platform->platform_server;
+        $config->platform_port = $platform->platform_port;
+        $config->platform_login = $platform->platform_login;
 
         return $config;
     }
@@ -64,9 +71,6 @@ final class BrokerSdkConfigAssembler
             'trading_service_base_url' => $config->trading_service_base_url,
             'connection_id' => $config->connection_id,
             'connection_name' => $config->connection_name,
-            'mt5_server' => $config->mt5_server,
-            'mt5_port' => $config->mt5_port,
-            'mt5_login' => $config->mt5_login,
             'platform_server' => $config->platform_server,
             'platform_port' => $config->platform_port,
             'platform_login' => $config->platform_login,
