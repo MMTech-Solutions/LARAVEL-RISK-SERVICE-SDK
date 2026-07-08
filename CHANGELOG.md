@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.6.0] - 2026-07-07
+
+### Breaking
+
+- **`BrokerSdkConfigAssembler::forMt5()`** — accepts only {@see BrokerSdkCommonConfigItem}; no longer emits `mt5_server`, `mt5_port`, or `mt5_login` (Risk API rejects them when using trading-service `connection_id`).
+- **`BrokerMt5SdkConfigItem`** — deprecated; kept for backward compatibility but unused by `forMt5()`.
+
+### Added
+
+- **`MmtRiskSdk\Support\RiskApiErrorMessageResolver`** — resolves human-readable messages from Risk API failures, including FastAPI validation `detail` arrays.
+
 ## [3.5.0] - 2026-06-22
 
 ### Breaking

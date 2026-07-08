@@ -6,24 +6,23 @@ namespace MmtRiskSdk\Domains\Brokers\Platforms\Shared;
 
 use MmtRiskSdk\Domains\Brokers\ObjectResponses\BrokerSdkConfigInputItem;
 use MmtRiskSdk\Domains\Brokers\Platforms\B2Trader\BrokerB2TraderSdkConfigItem;
-use MmtRiskSdk\Domains\Brokers\Platforms\MT5\BrokerMt5SdkConfigItem;
 
 /**
  * Builds flat broker SDK config payloads from shared + platform-specific parts.
  */
 final class BrokerSdkConfigAssembler
 {
-    public static function forMt5(
-        BrokerSdkCommonConfigItem $common,
-        BrokerMt5SdkConfigItem $mt5,
-    ): BrokerSdkConfigInputItem {
+    /**
+     * MT5/MT4 SDK config for broker integration via trading-service session only.
+     *
+     * Risk API accepts {@see BrokerSdkCommonConfigItem} fields only; legacy {@code mt5_*} keys are rejected.
+     */
+    public static function forMt5(BrokerSdkCommonConfigItem $common): BrokerSdkConfigInputItem
+    {
         $config = new BrokerSdkConfigInputItem;
         $config->trading_service_base_url = $common->trading_service_base_url;
         $config->connection_id = $common->connection_id;
         $config->connection_name = $common->connection_name;
-        $config->mt5_server = $mt5->mt5_server;
-        $config->mt5_port = $mt5->mt5_port;
-        $config->mt5_login = $mt5->mt5_login;
 
         return $config;
     }
