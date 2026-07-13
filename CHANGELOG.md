@@ -5,6 +5,12 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.7.1] - 2026-07-13
+
+### Fixed
+
+- **WireHydrator** — `@var string[]` / other builtin element types are no longer treated as object lists (fixes `PhaseMetricsEnrichmentResponseItem::$dates_utc` hydration; see [#1](https://github.com/MMTech-Solutions/LARAVEL-RISK-SERVICE-SDK/issues/1)).
+
 ## [3.7.0] - 2026-07-07
 
 ### Fixed

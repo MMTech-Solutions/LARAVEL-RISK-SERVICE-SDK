@@ -10,7 +10,7 @@ use MmtRiskSdk\WireHydration\Attributes\WireMapped;
 #[WireMapped]
 final class PhaseMetricsEnrichmentResponseItem
 {
-    /** @var string[] */
+    /** @var list<string> */
     public array $dates_utc = [];
 
     /** @var array<string, array<int, float|null>> */

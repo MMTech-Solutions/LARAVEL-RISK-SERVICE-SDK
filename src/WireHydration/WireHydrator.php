@@ -217,7 +217,10 @@ class WireHydrator
     }
 
     /**
-     * Parses `@var Foo[]` or `\Full\Foo[]`.
+     * Parses `@var Foo[]` or `\Full\Foo[]` into an element class FQCN.
+     *
+     * Builtin element types (`string[]`, `int[]`, …) return null so the raw
+     * scalar list is kept. Non-existent class names also return null.
      *
      * @return class-string|null
      */
@@ -234,17 +237,37 @@ class WireHydrator
 
         $name = $matches[1];
 
+        $builtins = [
+            'string',
+            'int',
+            'float',
+            'bool',
+            'array',
+            'mixed',
+            'iterable',
+            'object',
+            'null',
+            'true',
+            'false',
+        ];
+
+        if (in_array(strtolower($name), $builtins, true)) {
+            return null;
+        }
+
         if (str_starts_with($name, '\\')) {
             /** @var class-string $fqcn */
             $fqcn = $name;
+        } else {
+            $namespace = $property->getDeclaringClass()->getNamespaceName();
 
-            return $fqcn;
+            /** @var class-string $fqcn */
+            $fqcn = $namespace.'\\'.$name;
         }
 
-        $namespace = $property->getDeclaringClass()->getNamespaceName();
-
-        /** @var class-string $fqcn */
-        $fqcn = $namespace.'\\'.$name;
+        if (! class_exists($fqcn) && ! enum_exists($fqcn)) {
+            return null;
+        }
 
         return $fqcn;
     }
