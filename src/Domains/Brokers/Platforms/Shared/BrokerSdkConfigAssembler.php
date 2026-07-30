@@ -6,6 +6,7 @@ namespace MmtRiskSdk\Domains\Brokers\Platforms\Shared;
 
 use MmtRiskSdk\Domains\Brokers\ObjectResponses\BrokerSdkConfigInputItem;
 use MmtRiskSdk\Domains\Brokers\Platforms\B2Trader\BrokerB2TraderSdkConfigItem;
+use MmtRiskSdk\Domains\Brokers\Platforms\CTrader\BrokerCTraderSdkConfigItem;
 use MmtRiskSdk\Domains\Brokers\Platforms\MT5\BrokerMt5SdkConfigItem;
 
 /**
@@ -63,6 +64,25 @@ final class BrokerSdkConfigAssembler
     }
 
     /**
+     * CTrader SDK config: shared trading-service session + platform connection hints (including broker_name).
+     */
+    public static function forCTrader(
+        BrokerSdkCommonConfigItem $common,
+        BrokerCTraderSdkConfigItem $platform,
+    ): BrokerSdkConfigInputItem {
+        $config = new BrokerSdkConfigInputItem;
+        $config->trading_service_base_url = $common->trading_service_base_url;
+        $config->connection_id = $common->connection_id;
+        $config->connection_name = $common->connection_name;
+        $config->platform_server = $platform->platform_server;
+        $config->platform_port = $platform->platform_port;
+        $config->platform_login = $platform->platform_login;
+        $config->broker_name = $platform->broker_name;
+
+        return $config;
+    }
+
+    /**
      * @return array<string, mixed>
      */
     public static function toPayload(BrokerSdkConfigInputItem $config): array
@@ -74,6 +94,7 @@ final class BrokerSdkConfigAssembler
             'platform_server' => $config->platform_server,
             'platform_port' => $config->platform_port,
             'platform_login' => $config->platform_login,
+            'broker_name' => $config->broker_name,
             'keycloak_url' => $config->keycloak_url,
             'bbp_client_id' => $config->bbp_client_id,
             'bbp_client_secret' => $config->bbp_client_secret,

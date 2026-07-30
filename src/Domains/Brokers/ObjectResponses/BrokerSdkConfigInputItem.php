@@ -24,6 +24,8 @@ final class BrokerSdkConfigInputItem
 
     public ?string $platform_login = null;
 
+    public ?string $broker_name = null;
+
     public ?string $keycloak_url = null;
 
     public ?string $bbp_client_id = null;
