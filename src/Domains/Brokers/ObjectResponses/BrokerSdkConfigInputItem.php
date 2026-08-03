@@ -26,6 +26,14 @@ final class BrokerSdkConfigInputItem
 
     public ?string $broker_name = null;
 
+    public ?string $manager_proxy_host = null;
+
+    public ?int $manager_proxy_port = null;
+
+    public ?string $manager_plant_id = null;
+
+    public ?string $manager_environment_name = null;
+
     public ?string $keycloak_url = null;
 
     public ?string $bbp_client_id = null;

@@ -14,5 +14,9 @@ final class BrokerCTraderSdkConfigItem
         public ?int $platform_port = null,
         public ?string $platform_login = null,
         public ?string $broker_name = null,
+        public ?string $manager_proxy_host = null,
+        public ?int $manager_proxy_port = null,
+        public ?string $manager_plant_id = null,
+        public ?string $manager_environment_name = null,
     ) {}
 }

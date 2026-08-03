@@ -78,6 +78,10 @@ final class BrokerSdkConfigAssembler
         $config->platform_port = $platform->platform_port;
         $config->platform_login = $platform->platform_login;
         $config->broker_name = $platform->broker_name;
+        $config->manager_proxy_host = $platform->manager_proxy_host;
+        $config->manager_proxy_port = $platform->manager_proxy_port;
+        $config->manager_plant_id = $platform->manager_plant_id;
+        $config->manager_environment_name = $platform->manager_environment_name;
 
         return $config;
     }
@@ -95,6 +99,10 @@ final class BrokerSdkConfigAssembler
             'platform_port' => $config->platform_port,
             'platform_login' => $config->platform_login,
             'broker_name' => $config->broker_name,
+            'manager_proxy_host' => $config->manager_proxy_host,
+            'manager_proxy_port' => $config->manager_proxy_port,
+            'manager_plant_id' => $config->manager_plant_id,
+            'manager_environment_name' => $config->manager_environment_name,
             'keycloak_url' => $config->keycloak_url,
             'bbp_client_id' => $config->bbp_client_id,
             'bbp_client_secret' => $config->bbp_client_secret,
