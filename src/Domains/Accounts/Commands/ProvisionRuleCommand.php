@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace MmtRiskSdk\Domains\Accounts\Commands;
 
 use MmtRiskSdk\Contracts\CommandInterface;
+use MmtRiskSdk\Domains\Rules\RuleActionInputItem;
+use MmtRiskSdk\Domains\Rules\RuleActionPayloadBuilder;
 
 /**
  * Rule template for account provisioning (OpenAPI: ProvisionRuleCreate).
@@ -13,6 +15,7 @@ final class ProvisionRuleCommand implements CommandInterface
 {
     /**
      * @param  list<array<string, mixed>>  $conditions
+     * @param  list<RuleActionInputItem>  $actions
      */
     public function __construct(
         public array $conditions,
@@ -22,6 +25,7 @@ final class ProvisionRuleCommand implements CommandInterface
         public int $notify_after_matches = 1,
         public ?string $cron_expression = null,
         public ?int $violation_interval = null,
+        public array $actions = [],
     ) {}
 
     /**
@@ -29,7 +33,7 @@ final class ProvisionRuleCommand implements CommandInterface
      */
     public function toArray(): array
     {
-        return array_filter([
+        $payload = [
             'name' => $this->name,
             'description' => $this->description,
             'enabled' => $this->enabled,
@@ -37,6 +41,12 @@ final class ProvisionRuleCommand implements CommandInterface
             'cron_expression' => $this->cron_expression,
             'violation_interval' => $this->violation_interval,
             'conditions' => $this->conditions,
-        ], static fn (mixed $v): bool => ! is_null($v));
+        ];
+
+        if ($this->actions !== []) {
+            $payload['actions'] = RuleActionPayloadBuilder::toPayloadList($this->actions);
+        }
+
+        return array_filter($payload, static fn (mixed $v): bool => ! is_null($v));
     }
 }

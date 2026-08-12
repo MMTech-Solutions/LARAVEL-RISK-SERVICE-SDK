@@ -33,6 +33,13 @@ final class RuleResponseItem
      */
     public array $conditions = [];
 
+    /**
+     * Side effects when the rule matches (e.g. close_all_positions, disable_trading).
+     *
+     * @var list<array{type: string, duration_ms?: int}>
+     */
+    public array $actions = [];
+
     /** @var array<string, mixed>|null */
     public ?array $watermark_metrics = null;
 
