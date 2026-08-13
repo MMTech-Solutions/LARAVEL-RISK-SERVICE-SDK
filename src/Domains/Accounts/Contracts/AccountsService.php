@@ -191,6 +191,36 @@ final class AccountsService implements AccountsServiceInterface
         return $this->sendPacket('get', $url);
     }
 
+    public function getAnalyticsDashboard(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+        ?string $sections = null,
+        ?int $markerLimit = null,
+        ?int $scatterLimit = null,
+        ?int $limit = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/dashboard';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+            'sections' => $sections,
+            'marker_limit' => $markerLimit,
+            'scatter_limit' => $scatterLimit,
+            'limit' => $limit,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
     private function encodePathSegment(string $value): string
     {
         return rawurlencode($value);

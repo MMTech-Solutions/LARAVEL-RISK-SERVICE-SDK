@@ -54,4 +54,23 @@ interface AccountsServiceInterface
     public function syncMt5OpenPositions(string $accountId): ActionResultInterface;
 
     public function listAccountOpenTrades(string $accountId): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/dashboard
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsDashboardResponseItem}.
+     */
+    public function getAnalyticsDashboard(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+        ?string $sections = null,
+        ?int $markerLimit = null,
+        ?int $scatterLimit = null,
+        ?int $limit = null,
+    ): ActionResultInterface;
 }
