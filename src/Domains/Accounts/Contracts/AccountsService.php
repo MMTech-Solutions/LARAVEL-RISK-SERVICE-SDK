@@ -243,6 +243,30 @@ final class AccountsService implements AccountsServiceInterface
         return $this->sendPacket('get', $url, $query);
     }
 
+    public function getAnalyticsEquityCurve(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+        ?int $markerLimit = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/equity-curve';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+            'marker_limit' => $markerLimit,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
     private function encodePathSegment(string $value): string
     {
         return rawurlencode($value);
