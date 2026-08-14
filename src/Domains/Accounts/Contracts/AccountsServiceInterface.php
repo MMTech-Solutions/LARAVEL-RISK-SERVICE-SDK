@@ -73,4 +73,19 @@ interface AccountsServiceInterface
         ?int $scatterLimit = null,
         ?int $limit = null,
     ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/overview
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsOverviewSliceItem}.
+     */
+    public function getAnalyticsOverview(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface;
 }
