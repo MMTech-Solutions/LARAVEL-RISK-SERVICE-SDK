@@ -119,4 +119,132 @@ interface AccountsServiceInterface
         ?string $session = null,
         ?string $phaseId = null,
     ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/daily
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsDailySliceItem}.
+     */
+    public function getAnalyticsDaily(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/pnl-distribution
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsPnlDistributionSliceItem}.
+     */
+    public function getAnalyticsPnlDistribution(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/sessions
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsSessionsSliceItem}.
+     */
+    public function getAnalyticsSessions(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/symbols
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsSymbolsSliceItem}.
+     */
+    public function getAnalyticsSymbols(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/time-heatmap
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsTimeHeatmapSliceItem}.
+     */
+    public function getAnalyticsTimeHeatmap(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/duration-scatter
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsDurationScatterSliceItem}.
+     */
+    public function getAnalyticsDurationScatter(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+        ?int $limit = null,
+    ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/behavior
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsBehaviorSliceItem}.
+     */
+    public function getAnalyticsBehavior(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/drawdowns
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsDrawdownsSliceItem}.
+     */
+    public function getAnalyticsDrawdowns(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/phases
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsPhasesSliceItem}.
+     */
+    public function getAnalyticsPhases(string $accountId): ActionResultInterface;
 }

@@ -5,6 +5,45 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.20.0] - 2026-08-14
+
+### Added
+
+- **Accounts**: `getAnalyticsDurationScatter` — `GET /accounts/{account_id}/analytics/duration-scatter` with optional filters (`from_utc`, `to_utc`, `symbol`, `side`, `session`, `phase_id`, `limit`). Map success `data` with existing `AnalyticsDurationScatterSliceItem`.
+- **Accounts**: `getAnalyticsBehavior` — `GET /accounts/{account_id}/analytics/behavior` with optional filters (`from_utc`, `to_utc`, `symbol`, `side`, `session`, `phase_id`). Map success `data` with existing `AnalyticsBehaviorSliceItem`.
+- **Accounts**: `getAnalyticsDrawdowns` — `GET /accounts/{account_id}/analytics/drawdowns` with optional filters (`from_utc`, `to_utc`, `symbol`, `side`, `session`, `phase_id`). Map success `data` with existing `AnalyticsDrawdownsSliceItem`.
+- **Accounts**: `getAnalyticsPhases` — `GET /accounts/{account_id}/analytics/phases` (no shared filters). Map success `data` with existing `AnalyticsPhasesSliceItem`.
+
+## [3.19.0] - 2026-08-14
+
+### Added
+
+- **Accounts**: `getAnalyticsTimeHeatmap` — `GET /accounts/{account_id}/analytics/time-heatmap` with optional filters (`from_utc`, `to_utc`, `symbol`, `side`, `session`, `phase_id`). Map success `data` with existing `AnalyticsTimeHeatmapSliceItem`.
+
+## [3.18.0] - 2026-08-14
+
+### Added
+
+- **Accounts**: `getAnalyticsSymbols` — `GET /accounts/{account_id}/analytics/symbols` with optional filters (`from_utc`, `to_utc`, `symbol`, `side`, `session`, `phase_id`). Map success `data` with existing `AnalyticsSymbolsSliceItem`.
+
+## [3.17.0] - 2026-08-14
+
+### Added
+
+- **Accounts**: `getAnalyticsSessions` — `GET /accounts/{account_id}/analytics/sessions` with optional filters (`from_utc`, `to_utc`, `symbol`, `side`, `session`, `phase_id`). Map success `data` with existing `AnalyticsSessionsSliceItem`.
+
+## [3.16.0] - 2026-08-14
+
+### Added
+
+- **Accounts**: `getAnalyticsPnlDistribution` — `GET /accounts/{account_id}/analytics/pnl-distribution` with optional filters (`from_utc`, `to_utc`, `symbol`, `side`, `session`, `phase_id`). Map success `data` with existing `AnalyticsPnlDistributionSliceItem`.
+
+## [3.15.0] - 2026-08-14
+
+### Added
+
+- **Accounts**: `getAnalyticsDaily` — `GET /accounts/{account_id}/analytics/daily` with optional filters (`from_utc`, `to_utc`, `symbol`, `side`, `session`, `phase_id`). Map success `data` with existing `AnalyticsDailySliceItem`.
+
 ## [3.14.0] - 2026-08-14
 
 ### Added

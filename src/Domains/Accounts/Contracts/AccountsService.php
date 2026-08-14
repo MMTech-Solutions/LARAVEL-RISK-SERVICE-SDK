@@ -289,6 +289,191 @@ final class AccountsService implements AccountsServiceInterface
         return $this->sendPacket('get', $url, $query);
     }
 
+    public function getAnalyticsDaily(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/daily';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
+    public function getAnalyticsPnlDistribution(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/pnl-distribution';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
+    public function getAnalyticsSessions(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/sessions';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
+    public function getAnalyticsSymbols(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/symbols';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
+    public function getAnalyticsTimeHeatmap(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/time-heatmap';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
+    public function getAnalyticsDurationScatter(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+        ?int $limit = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/duration-scatter';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+            'limit' => $limit,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
+    public function getAnalyticsBehavior(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/behavior';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
+    public function getAnalyticsDrawdowns(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/drawdowns';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
+    public function getAnalyticsPhases(string $accountId): ActionResultInterface
+    {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/phases';
+
+        return $this->sendPacket('get', $url);
+    }
+
     private function encodePathSegment(string $value): string
     {
         return rawurlencode($value);
