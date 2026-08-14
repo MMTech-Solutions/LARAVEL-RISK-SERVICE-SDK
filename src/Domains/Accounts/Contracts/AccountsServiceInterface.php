@@ -104,4 +104,19 @@ interface AccountsServiceInterface
         ?string $phaseId = null,
         ?int $markerLimit = null,
     ): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/profitability
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsProfitabilitySliceItem}.
+     */
+    public function getAnalyticsProfitability(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface;
 }

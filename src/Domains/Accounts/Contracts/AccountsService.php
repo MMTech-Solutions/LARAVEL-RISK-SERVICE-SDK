@@ -267,6 +267,28 @@ final class AccountsService implements AccountsServiceInterface
         return $this->sendPacket('get', $url, $query);
     }
 
+    public function getAnalyticsProfitability(
+        string $accountId,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface {
+        $url = $this->baseUrl.'/'.$this->encodePathSegment($accountId).'/analytics/profitability';
+        $query = $this->omitNull([
+            'from_utc' => $fromUtc,
+            'to_utc' => $toUtc,
+            'symbol' => $symbol,
+            'side' => $side,
+            'session' => $session,
+            'phase_id' => $phaseId,
+        ]);
+
+        return $this->sendPacket('get', $url, $query);
+    }
+
     private function encodePathSegment(string $value): string
     {
         return rawurlencode($value);
