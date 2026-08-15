@@ -247,4 +247,20 @@ interface AccountsServiceInterface
      * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsPhasesSliceItem}.
      */
     public function getAnalyticsPhases(string $accountId): ActionResultInterface;
+
+    /**
+     * GET /accounts/{account_id}/analytics/daily/{date_utc}/trades
+     *
+     * Map success `data` with {@see \MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsDailyDayTradesResponseItem}.
+     */
+    public function getAnalyticsDailyDayTrades(
+        string $accountId,
+        string $dateUtc,
+        ?string $fromUtc = null,
+        ?string $toUtc = null,
+        ?string $symbol = null,
+        ?string $side = null,
+        ?string $session = null,
+        ?string $phaseId = null,
+    ): ActionResultInterface;
 }

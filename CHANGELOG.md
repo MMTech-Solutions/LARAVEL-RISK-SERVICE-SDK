@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.21.0] - 2026-08-15
+
+### Added
+
+- **Accounts**: `getAnalyticsDailyDayTrades` — `GET /accounts/{account_id}/analytics/daily/{date_utc}/trades` with optional filters (`from_utc`, `to_utc`, `symbol`, `side`, `session`, `phase_id`).
+- **Analytics DTOs**: `AnalyticsDailyDayTradesResponseItem`, `AnalyticsDailyTradeRowItem`.
+
 ## [3.20.0] - 2026-08-14
 
 ### Added
