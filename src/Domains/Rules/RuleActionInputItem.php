@@ -15,6 +15,7 @@ final class RuleActionInputItem
     public function __construct(
         public RuleActionType $type,
         public ?int $duration_ms = null,
+        public ?string $resume_cron = null,
     ) {}
 
     public static function closeAllPositions(): self
@@ -22,24 +23,46 @@ final class RuleActionInputItem
         return new self(RuleActionType::CloseAllPositions);
     }
 
+    /**
+     * Disable trading for a fixed duration (milliseconds).
+     */
     public static function disableTrading(int $durationMs): self
     {
-        return new self(RuleActionType::DisableTrading, $durationMs);
+        return new self(RuleActionType::DisableTrading, duration_ms: $durationMs);
     }
 
     /**
-     * @return array{type: string, duration_ms?: int}
+     * Disable trading until the next UTC five-field cron tick (Risk API resume_cron).
+     */
+    public static function disableTradingUntilCron(string $resumeCron): self
+    {
+        return new self(RuleActionType::DisableTrading, resume_cron: $resumeCron);
+    }
+
+    /**
+     * @return array{type: string, duration_ms?: int, resume_cron?: string}
      */
     public function toArray(): array
     {
         $payload = ['type' => $this->type->value];
 
         if ($this->type === RuleActionType::DisableTrading) {
-            if ($this->duration_ms === null) {
-                throw new InvalidArgumentException('disable_trading action requires duration_ms.');
+            $hasDuration = $this->duration_ms !== null;
+            $hasResumeCron = $this->resume_cron !== null && $this->resume_cron !== '';
+
+            if (! $hasDuration && ! $hasResumeCron) {
+                throw new InvalidArgumentException(
+                    'disable_trading action requires duration_ms or resume_cron.',
+                );
             }
 
-            $payload['duration_ms'] = $this->duration_ms;
+            if ($hasDuration) {
+                $payload['duration_ms'] = $this->duration_ms;
+            }
+
+            if ($hasResumeCron) {
+                $payload['resume_cron'] = $this->resume_cron;
+            }
         }
 
         return $payload;

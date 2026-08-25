@@ -11,7 +11,7 @@ final class RuleActionPayloadBuilder
 {
     /**
      * @param  list<RuleActionInputItem>  $actions
-     * @return list<array{type: string, duration_ms?: int}>
+     * @return list<array{type: string, duration_ms?: int, resume_cron?: string}>
      */
     public static function toPayloadList(array $actions): array
     {

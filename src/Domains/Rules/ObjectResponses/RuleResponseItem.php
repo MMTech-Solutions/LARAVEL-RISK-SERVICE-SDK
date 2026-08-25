@@ -36,7 +36,7 @@ final class RuleResponseItem
     /**
      * Side effects when the rule matches (e.g. close_all_positions, disable_trading).
      *
-     * @var list<array{type: string, duration_ms?: int}>
+     * @var list<array{type: string, duration_ms?: int, resume_cron?: string}>
      */
     public array $actions = [];
 
