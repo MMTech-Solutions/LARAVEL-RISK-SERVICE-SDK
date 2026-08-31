@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use MmtRiskSdk\Contracts\CommandInterface;
 use MmtRiskSdk\Domains\MetricPhases\Commands\AssignPhaseRuleCommand;
 use MmtRiskSdk\Domains\MetricPhases\Commands\CreateMetricPhaseCommand;
+use MmtRiskSdk\Domains\MetricPhases\Commands\PatchPhaseRuleMembershipCommand;
 use MmtRiskSdk\TransportDrivers\Contracts\ActionResultInterface;
 use MmtRiskSdk\TransportDrivers\Contracts\TransportInterface;
 use MmtRiskSdk\TransportDrivers\Contracts\TransportPacket;
@@ -141,6 +142,24 @@ final class MetricPhasesService implements MetricPhasesServiceInterface
         $url = $this->phaseBasePath($accountId).'/'.$this->encodePathSegment($phaseId).'/rules';
 
         return $this->sendPacket('post', $url, $command->toArray());
+    }
+
+    public function patchPhaseRuleMembership(
+        string $accountId,
+        string $phaseId,
+        string $ruleId,
+        CommandInterface $command,
+    ): ActionResultInterface {
+        if (! $command instanceof PatchPhaseRuleMembershipCommand) {
+            throw new InvalidArgumentException('Expected '.PatchPhaseRuleMembershipCommand::class);
+        }
+
+        $url = $this->phaseBasePath($accountId)
+            .'/'.$this->encodePathSegment($phaseId)
+            .'/rules/'.$this->encodePathSegment($ruleId)
+            .'/membership';
+
+        return $this->sendPacket('patch', $url, $command->toArray());
     }
 
     public function unassignRuleFromPhase(string $accountId, string $phaseId, string $ruleId): ActionResultInterface

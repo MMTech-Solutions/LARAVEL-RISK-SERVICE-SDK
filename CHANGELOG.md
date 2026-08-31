@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.23.0] - 2026-08-31
+
+### Added
+
+- **Metric phases**: `PatchPhaseRuleMembershipCommand` — body for `PATCH /accounts/{account_id}/metric-phases/{phase_id}/rules/{rule_id}/membership` (`reset_streak_on_match`, `unassign_on_match`, `reset_cron_expression`).
+- **Metric phases**: `MetricPhasesService::patchPhaseRuleMembership()` — update per-phase rule membership automation flags.
+
 ## [3.22.0] - 2026-08-25
 
 ### Added

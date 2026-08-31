@@ -51,5 +51,12 @@ interface MetricPhasesServiceInterface
 
     public function assignRuleToPhase(string $accountId, string $phaseId, CommandInterface $command): ActionResultInterface;
 
+    public function patchPhaseRuleMembership(
+        string $accountId,
+        string $phaseId,
+        string $ruleId,
+        CommandInterface $command,
+    ): ActionResultInterface;
+
     public function unassignRuleFromPhase(string $accountId, string $phaseId, string $ruleId): ActionResultInterface;
 }
