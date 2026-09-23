@@ -10,6 +10,7 @@ use MmtRiskSdk\Domains\Accounts\Commands\AttachAccountRuleCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\CreateAccountCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\EvaluationHistoryRangeCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\EvaluationHistoryRecentCommand;
+use MmtRiskSdk\Domains\Accounts\Commands\MigrateAccountsCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\PatchAccountRuleMembershipCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\ProvisionAccountCommand;
 use MmtRiskSdk\Domains\Accounts\Commands\UpdateAccountCommand;
@@ -48,6 +49,15 @@ final class AccountsService implements AccountsServiceInterface
         }
 
         return $this->sendPacket('post', $this->baseUrl.'/provision', $command->toArray());
+    }
+
+    public function migrateAccounts(CommandInterface $command): ActionResultInterface
+    {
+        if (! $command instanceof MigrateAccountsCommand) {
+            throw new InvalidArgumentException('Expected '.MigrateAccountsCommand::class);
+        }
+
+        return $this->sendPacket('post', $this->baseUrl.'/migrate', $command->toArray());
     }
 
     public function getAccountByLogin(string $login): ActionResultInterface
