@@ -9,11 +9,11 @@ use MmtRiskSdk\WireHydration\Attributes\WireMapped;
 #[WireMapped]
 final class AnalyticsOverviewStreaksItem
 {
-    public int $current_win_streak;
+    public int $win_streak_current;
 
-    public int $current_loss_streak;
+    public int $loss_streak_current;
 
-    public int $max_win_streak;
+    public int $win_streak_max;
 
-    public int $max_loss_streak;
+    public int $loss_streak_max;
 }

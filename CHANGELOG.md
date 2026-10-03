@@ -5,6 +5,20 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.25.0] - 2026-10-03
+
+### Changed
+
+- **Canonical metric names** (Risk API dropped the legacy aliases). Properties renamed to match the wire:
+  - `AccountResponseItem`: `current_win_streak` → `win_streak_current`, `current_loss_streak` → `loss_streak_current`, `max_win_streak` → `win_streak_max`, `max_loss_streak` → `loss_streak_max`, `max_drawdown_abs` → `max_drawdown_absolute`, `max_drawdown_pct` → `max_drawdown_total_pct`.
+  - `AnalyticsOverviewRiskItem`: `max_drawdown_abs` → `max_drawdown_absolute`, `max_drawdown_pct` → `max_drawdown_total_pct`.
+  - `AnalyticsOverviewStreaksItem`: `current_win_streak` → `win_streak_current`, `current_loss_streak` → `loss_streak_current`, `max_win_streak` → `win_streak_max`, `max_loss_streak` → `loss_streak_max`.
+- `openapi.json` and hydration smoke tests updated accordingly.
+
+### Fixed
+
+- Hydrating the analytics overview / dashboard against the current Risk API no longer throws `Missing wire key for required property AnalyticsOverviewRiskItem::$max_drawdown_abs`.
+
 ## [3.23.0] - 2026-08-31
 
 ### Added

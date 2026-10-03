@@ -39,17 +39,17 @@ final class AccountResponseItem
 
     public ?Mt5PlatformUserSnapshotItem $mt5_platform_user = null;
 
-    public ?int $current_win_streak = null;
+    public ?int $win_streak_current = null;
 
-    public ?int $current_loss_streak = null;
+    public ?int $loss_streak_current = null;
 
-    public ?int $max_win_streak = null;
+    public ?int $win_streak_max = null;
 
-    public ?int $max_loss_streak = null;
+    public ?int $loss_streak_max = null;
 
     public ?float $running_equity_peak = null;
 
-    public ?float $max_drawdown_abs = null;
+    public ?float $max_drawdown_absolute = null;
 
-    public ?float $max_drawdown_pct = null;
+    public ?float $max_drawdown_total_pct = null;
 }

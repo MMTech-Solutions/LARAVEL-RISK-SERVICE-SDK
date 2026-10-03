@@ -9,9 +9,9 @@ use MmtRiskSdk\WireHydration\Attributes\WireMapped;
 #[WireMapped]
 final class AnalyticsOverviewRiskItem
 {
-    public float $max_drawdown_abs;
+    public float $max_drawdown_absolute;
 
-    public float $max_drawdown_pct;
+    public float $max_drawdown_total_pct;
 
     public float $ulcer_index;
 

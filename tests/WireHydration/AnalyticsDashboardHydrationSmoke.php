@@ -48,8 +48,8 @@ $data = [
         ],
         'equity' => ['equity_first' => 100, 'equity_last' => 101, 'return_pct' => 1],
         'risk' => [
-            'max_drawdown_abs' => 0,
-            'max_drawdown_pct' => 0,
+            'max_drawdown_absolute' => 0,
+            'max_drawdown_total_pct' => 0,
             'ulcer_index' => 0,
             'recovery_factor' => 0,
             'underwater_now_pct' => 0,
@@ -64,10 +64,10 @@ $data = [
             'consistency_largest_day_pct' => 100,
         ],
         'streaks' => [
-            'current_win_streak' => 1,
-            'current_loss_streak' => 0,
-            'max_win_streak' => 1,
-            'max_loss_streak' => 0,
+            'win_streak_current' => 1,
+            'loss_streak_current' => 0,
+            'win_streak_max' => 1,
+            'loss_streak_max' => 0,
         ],
         'live' => [
             'equity' => 101,
