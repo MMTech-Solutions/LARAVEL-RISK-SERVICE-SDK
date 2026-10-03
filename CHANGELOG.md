@@ -5,6 +5,12 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.25.1] - 2026-10-03
+
+### Fixed
+
+- **`migrateAccounts` response hydration**: `MigrateAccountsResponseItem::$created` / `$failed` and `MigrateAccountCreatedResponseItem::$metric_phases` used `@var list<Foo>`, which `WireHydrator` does not parse, so items stayed plain arrays (consumers failed with `Attempt to read property "login" on array`). Docblocks now use `@var Foo[]`.
+
 ## [3.25.0] - 2026-10-03
 
 ### Changed

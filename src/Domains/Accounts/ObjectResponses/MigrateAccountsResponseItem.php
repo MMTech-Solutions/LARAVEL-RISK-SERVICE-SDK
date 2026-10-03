@@ -9,9 +9,9 @@ use MmtRiskSdk\WireHydration\Attributes\WireMapped;
 #[WireMapped]
 final class MigrateAccountsResponseItem
 {
-    /** @var list<MigrateAccountCreatedResponseItem> */
+    /** @var MigrateAccountCreatedResponseItem[] */
     public array $created = [];
 
-    /** @var list<MigrateAccountFailedResponseItem> */
+    /** @var MigrateAccountFailedResponseItem[] */
     public array $failed = [];
 }

@@ -13,6 +13,6 @@ final class MigrateAccountCreatedResponseItem
 
     public string $account_id;
 
-    /** @var list<ProvisionMetricPhaseIdResponseItem> */
+    /** @var ProvisionMetricPhaseIdResponseItem[] */
     public array $metric_phases = [];
 }
