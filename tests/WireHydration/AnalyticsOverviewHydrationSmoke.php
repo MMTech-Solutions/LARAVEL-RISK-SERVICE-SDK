@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__.'/../../../../../vendor/autoload.php';
+require_once __DIR__.'/../bootstrap.php';
 
 use MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsOverviewSliceItem;
 use MmtRiskSdk\WireHydration\WireHydrator;
@@ -69,6 +69,7 @@ $data = [
     'live' => [
         'equity' => 10075,
         'balance' => 10075,
+        'credit' => 250.5,
         'margin_used' => 0,
         'margin_free' => 10075,
         'margin_level_pct' => 0,
@@ -80,6 +81,23 @@ $data = [
 ];
 
 $obj = $h->hydrate($data, AnalyticsOverviewSliceItem::class);
+
+if ($obj->live->credit !== 250.5) {
+    throw new RuntimeException('Overview live credit was not hydrated as a float.');
+}
+
+foreach ([0, null] as $credit) {
+    $data['live']['credit'] = $credit;
+    $expected = $credit === null ? null : 0.0;
+    if ($h->hydrate($data, AnalyticsOverviewSliceItem::class)->live->credit !== $expected) {
+        throw new RuntimeException('Overview must preserve zero and null credit.');
+    }
+}
+
+unset($data['live']['credit']);
+if ($h->hydrate($data, AnalyticsOverviewSliceItem::class)->live->credit !== null) {
+    throw new RuntimeException('Missing overview credit must remain null.');
+}
 
 echo 'ok generated_at='.$obj->generated_at
     .' trades='.$obj->kpis->trades

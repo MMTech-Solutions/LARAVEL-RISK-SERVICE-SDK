@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__.'/../../../../../vendor/autoload.php';
+require_once __DIR__.'/../bootstrap.php';
 
 use MmtRiskSdk\Domains\Accounts\ObjectResponses\Analytics\AnalyticsDashboardResponseItem;
 use MmtRiskSdk\WireHydration\WireHydrator;
@@ -72,6 +72,7 @@ $data = [
         'live' => [
             'equity' => 101,
             'balance' => 101,
+            'credit' => 25,
             'margin_used' => 0,
             'margin_free' => 101,
             'margin_level_pct' => 0,
@@ -116,6 +117,23 @@ $data = [
 ];
 
 $obj = $h->hydrate($data, AnalyticsDashboardResponseItem::class);
+
+if ($obj->overview->live->credit !== 25.0) {
+    throw new RuntimeException('Dashboard overview credit was not hydrated as a float.');
+}
+
+foreach ([0, null] as $credit) {
+    $data['overview']['live']['credit'] = $credit;
+    $expected = $credit === null ? null : 0.0;
+    if ($h->hydrate($data, AnalyticsDashboardResponseItem::class)->overview->live->credit !== $expected) {
+        throw new RuntimeException('Dashboard must preserve zero and null credit.');
+    }
+}
+
+unset($data['overview']['live']['credit']);
+if ($h->hydrate($data, AnalyticsDashboardResponseItem::class)->overview->live->credit !== null) {
+    throw new RuntimeException('Missing dashboard credit must remain null.');
+}
 
 echo 'ok generated_at='.$obj->generated_at
     .' overview_trades='.$obj->overview->kpis->trades

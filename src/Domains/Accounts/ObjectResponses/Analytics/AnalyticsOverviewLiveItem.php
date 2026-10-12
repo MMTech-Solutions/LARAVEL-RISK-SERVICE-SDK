@@ -13,6 +13,9 @@ final class AnalyticsOverviewLiveItem
 
     public float $balance;
 
+    /** Account credit; null when unavailable in the Risk API response. */
+    public ?float $credit = null;
+
     public float $margin_used;
 
     public float $margin_free;
