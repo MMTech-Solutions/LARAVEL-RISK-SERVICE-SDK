@@ -40,6 +40,9 @@ final class RuleResponseItem
      */
     public array $actions = [];
 
+    /** Close comment applied to close_all_positions steps (rule level). */
+    public ?string $close_position_comment = null;
+
     /** @var array<string, mixed>|null */
     public ?array $watermark_metrics = null;
 

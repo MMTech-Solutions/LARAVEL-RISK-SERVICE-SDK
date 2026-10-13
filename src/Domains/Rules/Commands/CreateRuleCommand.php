@@ -25,6 +25,7 @@ final class CreateRuleCommand implements CommandInterface
         public ?string $cron_expression = null,
         public ?int $violation_interval = null,
         public array $actions = [],
+        public ?string $close_position_comment = null,
     ) {}
 
     public function toArray(): array
@@ -38,6 +39,7 @@ final class CreateRuleCommand implements CommandInterface
             'cron_expression' => $this->cron_expression,
             'violation_interval' => $this->violation_interval,
             'conditions' => $this->conditions,
+            'close_position_comment' => $this->close_position_comment,
         ];
 
         if ($this->actions !== []) {
